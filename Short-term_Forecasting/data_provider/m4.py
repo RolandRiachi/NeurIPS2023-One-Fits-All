@@ -23,7 +23,7 @@ from glob import glob
 
 import numpy as np
 import pandas as pd
-import patoolib
+# import patoolib
 from tqdm import tqdm
 import logging
 import os
@@ -86,8 +86,10 @@ class M4Dataset:
         :param training: Load training part if training is True, test part otherwise.
         """
         info_file = os.path.join(dataset_file, 'M4-info.csv')
-        train_cache_file = os.path.join(dataset_file, 'training.npz')
-        test_cache_file = os.path.join(dataset_file, 'test.npz')
+        # train_cache_file = os.path.join(dataset_file, 'training.npz')
+        # test_cache_file = os.path.join(dataset_file, 'test.npz')
+        train_cache_file = os.path.join(dataset_file, 'rand-train.npz')
+        test_cache_file = os.path.join(dataset_file, 'rand-test.npz')
         m4_info = pd.read_csv(info_file)
         return M4Dataset(ids=m4_info.M4id.values,
                          groups=m4_info.SP.values,
