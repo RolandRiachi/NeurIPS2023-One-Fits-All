@@ -22,9 +22,15 @@ class GPT4TS(nn.Module):
         self.padding_patch_layer = nn.ReplicationPad1d((0, self.stride)) 
         self.patch_num += 1
         
+        # TODO: Don't hardcode cache_dir
         if configs.is_gpt:
             if configs.pretrain:
-                self.gpt2 = GPT2Model.from_pretrained('gpt2', output_attentions=True, output_hidden_states=True)  # loads a pretrained GPT-2 base model
+                self.gpt2 = GPT2Model.from_pretrained(
+                    'gpt2', 
+                    cache_dir='/lustre/orion/csc538/proj-shared/llm2ts/gpt2/main/',
+                    output_attentions=True, 
+                    output_hidden_states=True
+                    )  # loads a pretrained GPT-2 base model
             else:
                 print("------------------no pretrain------------------")
                 self.gpt2 = GPT2Model(GPT2Config())
